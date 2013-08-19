@@ -42,6 +42,6 @@ class ChainedSelectWidget(Select):
         super(ChainedSelectWidget, self).__init__(*args, **kwargs)
 
     def render(self, name, value, attrs=None):
-        attrs = dict(self.datas, **{'class': 'chained', })
+        attrs = dict(self.datas, **{'class': 'chained', 'id': 'id_%s' % name})
         output = super(ChainedSelectWidget, self).render(name, value, attrs)
         return mark_safe(output)
