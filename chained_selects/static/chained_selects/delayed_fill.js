@@ -20,7 +20,7 @@
                 target.find('option:first').attr('selected', 'selected');
                 var auto_choose = true;
                 if(initial_value){
-                    target.find('option[value="'+ init_value +'"]').attr('selected', 'selected');
+                    target.find('option[value="'+ initial_value +'"]').attr('selected', 'selected');
                 }
                 if(auto_choose && j.length == 1){
                     target.find('option[value="'+ j[0].value +'"]').attr('selected', 'selected');
@@ -39,12 +39,22 @@
                 var pk = $(this).val();
                 if (!pk || pk == '')
                     fill_empty($target, empty_label);
-                else
-                    fill_field($target, empty_label, url, pk);
+                else {
+                    var initial_value = $target.val();
+                    if (initial_value != '')
+                        fill_field($target, empty_label, url, pk, initial_value);
+                    else
+                        fill_field($target, empty_label, url, pk);
+                }
             });
             var pk = $parent.val();
             if (!pk || pk == '')
                 fill_empty($target, empty_label);
+            else {
+                var initial_value = $target.val();
+                if (initial_value != '')
+                    fill_field($target, empty_label, url, pk, initial_value);
+            }
         });
     });
 })(jQuery || django.jQuery);
