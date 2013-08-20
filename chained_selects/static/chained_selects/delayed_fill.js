@@ -42,7 +42,9 @@
                 else
                     fill_field($target, empty_label, url, pk);
             });
-            fill_empty($target, empty_label);
+            var pk = $parent.val();
+            if (!pk || pk == '')
+                fill_empty($target, empty_label);
         });
     });
 })(jQuery || django.jQuery);

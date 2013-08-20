@@ -3,6 +3,7 @@
 import django
 from django.conf import settings
 from django.contrib.admin.templatetags.admin_static import static
+from django.forms.util import flatatt
 from django.forms.widgets import Select
 from django.utils.safestring import mark_safe
 
@@ -41,7 +42,13 @@ class ChainedSelectWidget(Select):
             'data-empty-label': '---------', }
         super(ChainedSelectWidget, self).__init__(*args, **kwargs)
 
-    def render(self, name, value, attrs=None):
-        attrs = dict(self.datas, **{'class': 'chained', 'id': 'id_%s' % name})
-        output = super(ChainedSelectWidget, self).render(name, value, attrs)
-        return mark_safe(output)
+    def render(self, name, value, attrs=None, choices=()):
+        if value is None: value = ''
+        attrs.update(dict(self.datas, **{'class': 'chained'}))
+        final_attrs = self.build_attrs(attrs, name=name)
+        output = [u'<select%s>' % flatatt(final_attrs)]
+        options = self.render_options(choices, [value])
+        if options:
+            output.append(options)
+        output.append(u'</select>')
+        return mark_safe(u'\n'.join(output))
