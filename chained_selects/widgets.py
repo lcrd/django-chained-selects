@@ -3,7 +3,7 @@
 import django
 from django.conf import settings
 from django.contrib.admin.templatetags.admin_static import static
-from django.forms.util import flatatt
+from django.forms.utils import flatatt
 from django.forms.widgets import Select
 from django.utils.safestring import mark_safe
 

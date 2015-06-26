@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
+import json
 import locale
 
 from django.db.models import get_model
 from django.http import HttpResponse
-from django.utils import simplejson
 
 
 def filterchain_all(request, app_name, model_name, method_name, pk):
@@ -15,5 +15,5 @@ def filterchain_all(request, app_name, model_name, method_name, pk):
     final = []
     for item in results:
         final.append({'value': item.pk, 'display': unicode(item)})
-    json = simplejson.dumps(final)
+    json = json.dumps(final)
     return HttpResponse(json, mimetype='application/json')
