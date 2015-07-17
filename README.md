@@ -15,7 +15,7 @@ Hint: Use a virtual environment!
 
 To install this package run:
 
-    pip install -e git+git://github.com/RaD/django-chained-selects#egg=django-chunks
+    pip install -e git+git://github.com/morenopc/django-chained-selects#egg=django-chunks
 
 Add the following line into ``INSTALLED_APPS`` in ``settings.py``:
 
