@@ -2,11 +2,11 @@ from setuptools import setup, find_packages
 
 setup(
     name='django-chained-select',
-    version='0.1.1',
+    version='0.1.3',
     description="A django app to link two select fields together",
-    author='Ruslan Popov',
-    author_email='ruslan.popov@gmail.com',
-    url="http://github.com/RaD/django-chained-select",
+    author='Moreno Cunha',
+    author_email='moreno.pinheiro@gmail.com',
+    url="https://github.com/morenopc/django-chained-selects",
     packages=find_packages(),
     include_package_data=True,
     classifiers=[
