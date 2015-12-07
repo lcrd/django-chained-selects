@@ -70,4 +70,8 @@ Create a form:
                 method_name='chained_relation', # the name of queryset method
                 )
 
+            # edit
+            self.fields['item'].widget.attrs['data-initial'] = (
+                self.instance.municipio.id)
+
 Then use this form as usual.

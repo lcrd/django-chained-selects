@@ -1,5 +1,17 @@
 (function($) {
     $(document).ready(function(){
+        function get_initial_value ($target) {
+            var initial_value = $target.val();
+            if (initial_value === null) {
+                initial_value = $target.data('initial');
+                if (typeof initial_value === 'undefined') {
+                    console.error('Initial value could not be found')
+                    return ''
+                };
+            };
+            return initial_value
+        }
+
         function fill_empty(target, label) {
             options = '<option value="">' + label + '</option>';
             target.html(options);
@@ -19,6 +31,7 @@
                     target.width(width + 'px');
                 target.find('option:first').attr('selected', 'selected');
                 var auto_choose = true;
+
                 if(initial_value){
                     target.find('option[value="'+ initial_value +'"]').attr('selected', 'selected');
                 }
@@ -35,12 +48,14 @@
                 $target = $(this),
                 url = $(this).data('url'),
                 empty_label = $(this).data('empty-label');
+
             $parent.on('change', function() {
+
                 var pk = $(this).val();
                 if (!pk || pk == '')
                     fill_empty($target, empty_label);
                 else {
-                    var initial_value = $target.val();
+                    var initial_value = get_initial_value($target);
                     if (initial_value != '')
                         fill_field($target, empty_label, url, pk, initial_value);
                     else
@@ -51,7 +66,9 @@
             if (!pk || pk == '')
                 fill_empty($target, empty_label);
             else {
-                var initial_value = $target.val();
+
+                var initial_value = get_initial_value($target);
+
                 if (initial_value != '')
                     fill_field($target, empty_label, url, pk, initial_value);
             }
