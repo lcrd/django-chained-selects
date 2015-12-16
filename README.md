@@ -1,3 +1,6 @@
+Django Chained Selects
+======================
+
 Introduction
 ------------
 
@@ -7,6 +10,12 @@ a behaviour of a Select widget linking it to other select field.
 For instance, let you have two select fields on a form: 'categories' and
 'items'. Usually, visitors want to choose a category and then take an item
 of this category. This widget helps you implement this functionality.
+
+Tested Requirements
+-------------------
+
+Python 3.4.3
+Django 1.8.3
 
 Installation
 ------------
