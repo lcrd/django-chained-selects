@@ -1,15 +1,17 @@
 (function($) {
     $(document).ready(function(){
-        function get_initial_value ($target) {
-            var initial_value = $target.val();
-            if (initial_value === null) {
-                initial_value = $target.data('initial');
-                if (typeof initial_value === 'undefined') {
-                    console.error('Initial value could not be found')
+        function get_initial_value($select) {
+            var val = $select.val();
+            if (!val) {
+                val = $select.data('initial');
+                if (typeof val === 'undefined') {
+                    console.error(
+                        $select.attr('name') + ' ' +
+                        'initial value could not be found')
                     return ''
                 };
             };
-            return initial_value
+            return val
         }
 
         function fill_empty(target, label) {
@@ -62,14 +64,15 @@
                         fill_field($target, empty_label, url, pk);
                 }
             });
-            var pk = $parent.val();
-            if (!pk || pk == '')
+            // parent field initial key
+            var pk = get_initial_value($parent);
+            // new record
+            if (typeof pk === 'undefined')
                 fill_empty($target, empty_label);
+            // get edit record initial value
             else {
-
-                var initial_value = get_initial_value($target);
-
-                if (initial_value != '')
+                var initial_value = $target.data('initial');
+                if (typeof initial_value !== 'undefined')
                     fill_field($target, empty_label, url, pk, initial_value);
             }
         });
